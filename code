@@ -1,0 +1,53 @@
+// Define the pins connected to L293D
+const int ENA = 9;  // Enable pin for Motor A
+const int IN1 = 8;  // Control pin 1 for Motor A
+const int IN2 = 7;  // Control pin 2 for Motor A
+
+void setup() {
+  // Set up the motor control pins as outputs
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+
+  // Set the motor to stop initially
+  digitalWrite(ENA, LOW);  // Disable the motor driver
+  digitalWrite(IN1, LOW);  // Set control pins to LOW
+  digitalWrite(IN2, LOW);
+}
+
+void loop() {
+  // Run the motor clockwise for 2 seconds
+  motorClockwise();
+  delay(2000);
+
+  // Stop the motor for 1 second
+  motorStop();
+  delay(1000);
+
+  // Run the motor counterclockwise for 2 seconds
+  motorCounterclockwise();
+  delay(2000);
+
+  // Stop the motor for 1 second
+  motorStop();
+  delay(1000);
+}
+
+// Function to run the motor clockwise
+void motorClockwise() {
+  digitalWrite(ENA, HIGH);  // Enable the motor driver
+  digitalWrite(IN1, HIGH);  // Set control pin 1 to HIGH
+  digitalWrite(IN2, LOW);   // Set control pin 2 to LOW
+}
+
+// Function to run the motor counterclockwise
+void motorCounterclockwise() {
+  digitalWrite(ENA, HIGH);  // Enable the motor driver
+  digitalWrite(IN1, LOW);   // Set control pin 1 to LOW
+  digitalWrite(IN2, HIGH);  // Set control pin 2 to HIGH
+}
+
+// Function to stop the motor
+void motorStop() {
+  digitalWrite(ENA, LOW);  // Disable the motor driver
+}
